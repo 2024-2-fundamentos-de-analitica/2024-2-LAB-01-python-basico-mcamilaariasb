@@ -27,3 +27,23 @@ def pregunta_08():
      (9, ['A', 'B', 'C', 'E'])]
 
     """
+    
+    with open("files/input/data.csv", "r") as file:
+        lines = file.readlines()
+
+    col2_to_col1_set = {}
+
+    for line in lines:
+        parts = line.strip().split('\t')  
+        col1 = parts[0]  
+        col2 = int(parts[1])  
+
+        if col2 not in col2_to_col1_set:
+            col2_to_col1_set[col2] = set()
+        col2_to_col1_set[col2].add(col1)
+
+    result = [(key, sorted(list(value))) for key, value in sorted(col2_to_col1_set.items())]
+    return result
+
+print(pregunta_08())
+

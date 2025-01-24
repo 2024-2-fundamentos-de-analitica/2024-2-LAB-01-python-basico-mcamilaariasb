@@ -26,3 +26,21 @@ def pregunta_04():
      ('12', 3)]
 
     """
+
+    with open("files/input/data.csv", "r") as file:
+        lines = file.readlines()
+
+    month_counts = {}
+    for line in lines:
+        parts = line.split("\t")
+        date = parts[2]  
+        month = date.split("-")[1]  
+        if month in month_counts:
+            month_counts[month] += 1
+        else:
+            month_counts[month] = 1
+    result = sorted(month_counts.items())
+
+    return result
+
+print(pregunta_04())

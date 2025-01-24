@@ -15,3 +15,20 @@ def pregunta_03():
     [('A', 53), ('B', 36), ('C', 27), ('D', 31), ('E', 67)]
 
     """
+    with open("files/input/data.csv", "r") as file:
+        lines = file.readlines()
+
+    sums = {}
+    for line in lines:
+        parts = line.split("\t")
+        letra = parts[0]  
+        valor = int(parts[1])  
+        if letra in sums:
+            sums[letra] += valor
+        else:
+            sums[letra] = valor
+    result = sorted(sums.items())
+
+    return result
+
+print(pregunta_03())

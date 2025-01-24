@@ -24,3 +24,21 @@ def pregunta_09():
      'jjj': 18}}
 
     """
+    with open("files/input/data.csv", "r") as file:
+        lines = file.readlines()
+ 
+    col5_count = {}
+
+    for line in lines:
+        parts = line.strip().split('\t')  
+        col5_values = parts[4].split(',')  
+
+        for value_pair in col5_values:
+            key, _ = value_pair.split(':')  
+            if key not in col5_count:
+                col5_count[key] = 0
+            col5_count[key] += 1
+
+    return dict(sorted(col5_count.items()))
+
+print(pregunta_09())
